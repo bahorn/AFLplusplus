@@ -20,14 +20,21 @@ endif
 
 CFLAGS := -O3 -funroll-loops -g -fPIC
 
-all:	libAFLDriver.a libAFLQemuDriver.a aflpp_qemu_driver_hook.so
+all:	libAFLDriver.a libAFLDriver32.a libAFLQemuDriver.a aflpp_qemu_driver_hook.so
 
 aflpp_driver.o:	aflpp_driver.c
 	-$(CC) -I. -I../../include $(CFLAGS) -c aflpp_driver.c
 
+aflpp_driver32.o: aflpp_driver.c
+	-$(CC) -I. -I../../include $(CFLAGS) -m32 -c aflpp_driver.c -o aflpp_driver32.o
+
 libAFLDriver.a:	aflpp_driver.o
 	@ar rc libAFLDriver.a aflpp_driver.o
 	@cp -vf libAFLDriver.a ../../
+
+libAFLDriver32.a: aflpp_driver32.o
+	@ar rc libAFLDriver32.a aflpp_driver32.o
+	@cp -vf libAFLDriver32.a ../../
 
 debug:
 	$(CC) -Wno-deprecated -I../../include $(CFLAGS) -D_DEBUG=\"1\" -c -o afl-performance.o ../../src/afl-performance.c

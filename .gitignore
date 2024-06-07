@@ -71,11 +71,13 @@ examples/afl_frida/libtestinstr.so
 examples/afl_network_proxy/afl-network-client
 examples/afl_network_proxy/afl-network-server
 examples/aflpp_driver/libAFLDriver.a
+examples/aflpp_driver/libAFLDriver32.a
 examples/aflpp_driver/libAFLQemuDriver.a
 gmon.out
 in
 ld
 libAFLDriver.a
+libAFLDriver32.a
 libAFLQemuDriver.a
 out
 qemu_mode/libcompcov/compcovtest

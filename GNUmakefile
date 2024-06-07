@@ -808,6 +808,7 @@ install: all $(MANPAGES)
 	@if [ -f libnyx.so ]; then install -m 755 libnyx.so $${DESTDIR}$(HELPER_PATH); fi
 	@if [ -f utils/afl_network_proxy/afl-network-server ]; then $(MAKE) -C utils/afl_network_proxy install; fi
 	@if [ -f utils/aflpp_driver/libAFLDriver.a ]; then set -e; install -m 644 utils/aflpp_driver/libAFLDriver.a $${DESTDIR}$(HELPER_PATH); fi
+	@if [ -f utils/aflpp_driver/libAFLDriver32.a ]; then set -e; install -m 644 utils/aflpp_driver/libAFLDriver32.a $${DESTDIR}$(HELPER_PATH); fi
 	@if [ -f utils/aflpp_driver/libAFLQemuDriver.a ]; then set -e; install -m 644 utils/aflpp_driver/libAFLQemuDriver.a $${DESTDIR}$(HELPER_PATH); fi
 	-$(MAKE) -f GNUmakefile.llvm install
 ifneq "$(SYS)" "Darwin"
@@ -829,7 +830,7 @@ endif
 .PHONY: uninstall
 uninstall:
 	-cd $${DESTDIR}$(BIN_PATH) && rm -f $(PROGS) $(SH_PROGS) afl-cs-proxy afl-qemu-trace afl-plot-ui afl-fuzz-document afl-network-client afl-network-server afl-g* afl-plot.sh afl-as afl-ld-lto afl-c* afl-lto*
-	-cd $${DESTDIR}$(HELPER_PATH) && rm -f afl-g*.*o afl-llvm-*.*o afl-compiler-*.*o libdislocator.so libtokencap.so libcompcov.so libqasan.so afl-frida-trace.so libnyx.so socketfuzz*.so argvfuzz*.so libAFLDriver.a libAFLQemuDriver.a as afl-as SanitizerCoverage*.so compare-transform-pass.so cmplog-*-pass.so split-*-pass.so dynamic_list.txt injections.dic
+	-cd $${DESTDIR}$(HELPER_PATH) && rm -f afl-g*.*o afl-llvm-*.*o afl-compiler-*.*o libdislocator.so libtokencap.so libcompcov.so libqasan.so afl-frida-trace.so libnyx.so socketfuzz*.so argvfuzz*.so libAFLDriver.a libAFLDriver32.a libAFLQemuDriver.a as afl-as SanitizerCoverage*.so compare-transform-pass.so cmplog-*-pass.so split-*-pass.so dynamic_list.txt injections.dic
 	-rm -rf $${DESTDIR}$(MISC_PATH)/testcases $${DESTDIR}$(MISC_PATH)/dictionaries
 	-sh -c "ls docs/*.md | sed 's|^docs/|$${DESTDIR}$(DOC_PATH)/|' | xargs rm -f"
 	-cd $${DESTDIR}$(MAN_PATH) && rm -f $(MANPAGES)

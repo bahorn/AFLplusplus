@@ -2343,7 +2343,13 @@ static void add_aflpplib(aflcc_state_t *aflcc) {
 
   if (!aflcc->need_aflpplib) return;
 
-  u8 *afllib = find_object(aflcc, "libAFLDriver.a");
+  u8 *afllib = NULL;
+
+  if (aflcc->bit_mode == 32) {
+        afllib = find_object(aflcc, "libAFLDriver32.a");
+  } else {
+        afllib = find_object(aflcc, "libAFLDriver.a");
+  }
 
   if (!be_quiet) {
 
