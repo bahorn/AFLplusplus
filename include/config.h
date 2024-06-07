@@ -257,11 +257,11 @@
    (note that if this value is changed, several areas in afl-cc.c, afl-fuzz.c
    and afl-fuzz-state.c have to be changed as well! */
 
-#define MAX_FILE (1 * 1024 * 1024L)
+#define MAX_FILE (128 * 1024 * 1024L)
 
 /* The same, for the test case minimizer: */
 
-#define TMIN_MAX_FILE (10 * 1024 * 1024L)
+#define TMIN_MAX_FILE (128 * 1024 * 1024L)
 
 /* Block normalization steps for afl-tmin: */
 
